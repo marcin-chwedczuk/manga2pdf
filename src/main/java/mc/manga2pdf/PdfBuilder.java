@@ -1,9 +1,16 @@
 package mc.manga2pdf;
 
+import org.apache.jempbox.xmp.XMPMetadata;
+import org.apache.jempbox.xmp.XMPSchemaBasic;
+import org.apache.jempbox.xmp.XMPSchemaDublinCore;
+import org.apache.jempbox.xmp.XMPSchemaPDF;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
+import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.common.PDMetadata;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.xobject.PDJpeg;
@@ -14,6 +21,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class PdfBuilder {
@@ -38,8 +46,14 @@ public class PdfBuilder {
         }
     }
 
-    private void setMetadata(PDDocument document, String title) {
+    private void setMetadata(PDDocument document, String title) throws Exception {
+        PDDocumentInformation info = document.getDocumentInformation();
 
+        info.setTitle(title);
+        info.setKeywords("manga manga2pdf " + title);
+        info.setAuthor("manga2pdf via PDFBox");
+        info.setCreationDate(new GregorianCalendar());
+        info.setModificationDate(new GregorianCalendar());
     }
 
     private void addPageFromImage(PDDocument document, String imagePath) {
