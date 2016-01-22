@@ -21,7 +21,7 @@ public class CommandLineOptions {
                     verbose = true;
                 }
                 else {
-                    throw new RuntimeException("Unrecognized option: '" + arg + "'.");
+                    throw new CommandLineOptionsException("Unrecognized option: '" + arg + "'.");
                 }
             }
             else if (StringUtils.isNullOrEmpty(archive)) {
@@ -40,6 +40,10 @@ public class CommandLineOptions {
 
         if (StringUtils.isNullOrEmpty(outputPdf))
             outputPdf = PathUtils.replaceExtension(archive, ".pdf");
+
+        if (!outputPdf.endsWith(".pdf")) {
+            outputPdf = outputPdf + ".pdf";
+        }
     }
 
     public boolean getVerbose() { return verbose; }
@@ -51,11 +55,13 @@ public class CommandLineOptions {
     }
 
     public static void printUsage(PrintStream stream) {
-        stream.printf("manga2pdf archive [output[.pdf]] [-v|--verbose]%n");
         stream.println();
-        stream.printf("\tarchive        - path to ZIP or RAR file containing manga/comic book%n");
-        stream.printf("\toutput.pdf     - path to PDF file that will be created%n");
-        stream.printf("\t-v | --verbose - enable debug logging to console");
+        stream.println("usage:");
+        stream.printf("  manga2pdf archive [output[.pdf]] [-v|--verbose]%n");
+        stream.println();
+        stream.printf("  archive        - path to ZIP or RAR file containing manga/comic book%n");
+        stream.printf("  output.pdf     - path to PDF file that will be generated%n");
+        stream.printf("  -v | --verbose - enable debug logging to console%n");
         stream.println();
     }
 }
