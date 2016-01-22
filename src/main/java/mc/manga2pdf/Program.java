@@ -26,9 +26,12 @@ public class Program {
         }
 
         // build pdf
+        new PdfBuilder().createPdfFromImages(pages, "title", "/home/mc/m2pdf/out.pdf");
+
         // cleanup
 
         // handle arguments from command line
+        // create jar & bash start script
 
         logger.debug("END");
     }
