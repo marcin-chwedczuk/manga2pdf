@@ -6,6 +6,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class PathUtils {
     private PathUtils() { }
@@ -104,5 +105,41 @@ public final class PathUtils {
         Path pathBase = Paths.get(directory);
         Path pathRelative = pathBase.relativize(pathAbsolute);
         return pathRelative.toString();
+    }
+
+    public static List<String> getFilesInDirectory(String directory) {
+        try {
+            List<String> files = new ArrayList<String>();
+
+            File[] entries = new File(directory).listFiles();
+            for (File entry : entries) {
+                if (entry.isFile()) {
+                    files.add(entry.getCanonicalPath());
+                }
+            }
+
+            return files;
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Cannot get list of files in directory: " + directory, e);
+        }
+    }
+
+    public static List<String> getDirectoriesInDirectory(String directory) {
+        try {
+            List<String> directories = new ArrayList<String>();
+
+            File[] entries = new File(directory).listFiles();
+            for (File entry : entries) {
+                if (entry.isDirectory()) {
+                    directories.add(entry.getCanonicalPath());
+                }
+            }
+
+            return directories;
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Cannot get list of subdirectories in directory: " + directory, e);
+        }
     }
 }
