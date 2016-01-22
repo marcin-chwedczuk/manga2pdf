@@ -6,7 +6,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 public final class PathUtils {
     private PathUtils() { }
@@ -140,6 +140,72 @@ public final class PathUtils {
         }
         catch (Exception e) {
             throw new RuntimeException("Cannot get list of subdirectories in directory: " + directory, e);
+        }
+    }
+
+    public static void removeRecurively(String directory) {
+        try {
+            Files.walkFileTree(Paths.get(directory), new SimpleFileVisitor<Path>() {
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+                        throws IOException
+                {
+                    Files.delete(file);
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException
+                {
+                    // try to delete the file anyway, even if its attributes
+                    // could not be read, since delete-only access is
+                    // theoretically possible
+                    Files.delete(file);
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException
+                {
+                    if (exc == null)
+                    {
+                        Files.delete(dir);
+                        return FileVisitResult.CONTINUE;
+                    }
+                    else
+                    {
+                        // directory iteration failed; propagate exception
+                        throw exc;
+                    }
+                }
+            });
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Cannot recursively remove directory: " + directory, e);
+        }
+    }
+
+    public static boolean fileExists(String path) {
+        try {
+            File f = new File(path);
+            return f.exists() && f.isFile();
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Checking if file exists failed", e);
+        }
+    }
+
+    public static String createTempDirectory(String prefix) {
+        try {
+            String systemTempDirectory = System.getProperty("java.io.tmpdir");
+            String tempDirectoryName = prefix + UUID.randomUUID().toString();
+            File tempDirectory = new File(systemTempDirectory, tempDirectoryName);
+
+            tempDirectory.mkdirs();
+            return tempDirectory.getCanonicalPath();
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Creating temp directory failed", e);
         }
     }
 }
