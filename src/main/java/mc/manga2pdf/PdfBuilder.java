@@ -38,7 +38,7 @@ public class PdfBuilder extends ProgressReportingComponent {
             }
 
             logger.debug("SAVING PDF FILE...");
-            reportProgress("SAVING PDF TO FILE...");
+            reportProgress("SAVING PDF TO FILE (MAY TAKE A WHILE)...");
 
             document.save(pdfFilename);
             document.close();
