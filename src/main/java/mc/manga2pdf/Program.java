@@ -10,7 +10,7 @@ public class Program {
         String currentWorkingDir = PathUtils.getCurrentWorkingDirectory();
         logger.debug("Current working directory: {}", currentWorkingDir);
 
-        String archiveFilename = "/home/mc/Torrents/Trap Days/[Hachimitsu Scans] Trap Days ch. 1-6 (end).rar";
+        String archiveFilename = "/home/mc/manga/koi_neko/Koi_Neko_v01_ch01_[Taruby]_v1.2.zip";
         String pdfFilename = "/home/mc/m2pdf/"; // default .zip -> .pdf
 
         // extract recursively archive zip/rar supported
