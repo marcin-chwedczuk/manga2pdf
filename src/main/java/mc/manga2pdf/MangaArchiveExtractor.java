@@ -7,7 +7,7 @@ import java.nio.file.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MangaArchiveExtractor {
+public class MangaArchiveExtractor extends ProgressReportingComponent {
     private static Logger logger = LogManager.getLogger(MangaArchiveExtractor.class);
 
     private final String archiveFilename;
@@ -38,6 +38,8 @@ public class MangaArchiveExtractor {
     {
         // extract archive to output directory
         logger.debug("extracting archive: {} to directory {}", archiveFilename, outputDirectory);
+        reportProgress("EXTRACTING ARCHIVE: %s", PathUtils.getFileName(archiveFilename));
+
         ArchiveExtractor extractor =
                 ArchiveExtractorFactory.createExtractor(PathUtils.getExtension(archiveFilename));
         extractor.extract(archiveFilename, outputDirectory);

@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class PdfBuilder {
+public class PdfBuilder extends ProgressReportingComponent {
     private Logger logger = LogManager.getLogger(PdfBuilder.class);
 
     public void createPdfFromImages(final List<String> images, final String title, final String pdfFilename) {
@@ -38,6 +38,8 @@ public class PdfBuilder {
             }
 
             logger.debug("SAVING PDF FILE...");
+            reportProgress("SAVING PDF TO FILE...");
+
             document.save(pdfFilename);
             document.close();
         }
@@ -57,6 +59,8 @@ public class PdfBuilder {
     }
 
     private void addPageFromImage(PDDocument document, String imagePath) {
+        reportProgress("BUILDING PDF: %s", PathUtils.getFileName(imagePath));
+
         try {
             PDXObjectImage image = loadImage(document, imagePath);
 

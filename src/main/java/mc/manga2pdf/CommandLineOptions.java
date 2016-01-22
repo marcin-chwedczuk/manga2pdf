@@ -7,6 +7,7 @@ public class CommandLineOptions {
     private String outputPdf;
 
     private boolean verbose;
+    private boolean quiet;
 
     private CommandLineOptions(String[] args) {
         if (args == null)
@@ -19,6 +20,9 @@ public class CommandLineOptions {
             if (arg.startsWith("-")) {
                 if ("-v".equals(arg) || "--verbose".equals(arg)) {
                     verbose = true;
+                }
+                else if ("-q".equals(arg) || "--quiet".equals(arg)) {
+                    quiet = true;
                 }
                 else {
                     throw new CommandLineOptionsException("Unrecognized option: '" + arg + "'.");
@@ -47,6 +51,7 @@ public class CommandLineOptions {
     }
 
     public boolean getVerbose() { return verbose; }
+    public boolean getQuiet() { return quiet; }
     public String getArchive() { return archive; }
     public String getOutputPdf() { return outputPdf; }
 
@@ -62,6 +67,7 @@ public class CommandLineOptions {
         stream.printf("  archive        - path to ZIP or RAR file containing manga/comic book%n");
         stream.printf("  output.pdf     - path to PDF file that will be generated%n");
         stream.printf("  -v | --verbose - enable debug logging to console%n");
+        stream.printf("  -q | --quiet   - don't write anything to console%n");
         stream.println();
     }
 }
