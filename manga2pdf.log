@@ -1,0 +1,21 @@
+DEBUG 12:30:42: Current working directory: /home/mc/IdeaProjects/manga2pdf
+DEBUG 12:30:42: extracting archive: /mnt/store/Torrents/Trap Days/[Hachimitsu Scans] Trap Days ch. 1-6 (end).rar to directory /home/mc/m2pdf
+DEBUG 12:30:42: found nested archive /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 3.rar
+DEBUG 12:30:42: found nested archive /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 1.rar
+DEBUG 12:30:42: found nested archive /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 2.rar
+DEBUG 12:30:42: found nested archive /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 5.rar
+DEBUG 12:30:42: found nested archive /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 6 (end).rar
+DEBUG 12:30:42: found nested archive /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 4.rar
+DEBUG 12:30:42: extracting archive: /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 3.rar to directory /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 3
+DEBUG 12:30:42: removing archive file /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 3.rar
+DEBUG 12:30:42: extracting archive: /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 1.rar to directory /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 1
+DEBUG 12:30:42: removing archive file /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 1.rar
+DEBUG 12:30:42: extracting archive: /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 2.rar to directory /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 2
+DEBUG 12:30:42: removing archive file /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 2.rar
+DEBUG 12:30:42: extracting archive: /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 5.rar to directory /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 5
+DEBUG 12:30:42: removing archive file /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 5.rar
+DEBUG 12:30:42: extracting archive: /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 6 (end).rar to directory /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 6 (end)
+DEBUG 12:30:42: removing archive file /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 6 (end).rar
+DEBUG 12:30:42: extracting archive: /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 4.rar to directory /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 4
+DEBUG 12:30:42: removing archive file /home/mc/m2pdf/[Hachimitsu Scans] Trap Days ch. 1-6 (end)/[Hachimitsu Scans] Trap Days ch. 4.rar
+DEBUG 12:30:42: END
