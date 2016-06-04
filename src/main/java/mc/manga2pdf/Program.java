@@ -10,7 +10,6 @@ import org.apache.logging.log4j.core.appender.ConsoleAppender;
 import org.apache.logging.log4j.core.appender.FileAppender;
 import org.apache.logging.log4j.core.config.AppenderRef;
 import org.apache.logging.log4j.core.config.Configuration;
-import org.apache.logging.log4j.core.config.ConfigurationFactory;
 import org.apache.logging.log4j.core.config.LoggerConfig;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 
@@ -59,7 +58,7 @@ public class Program {
         logger.debug("Temp directory: {}", tempDirectory);
 
         // extract recursively archive zip/rar supported
-        MangaArchiveExtractor extractor = new MangaArchiveExtractor(commandLine.getArchive(), tempDirectory);
+        MangaArchiveExtractor extractor = new MangaArchiveExtractor(commandLine.getArchives(), tempDirectory);
         extractor.setProgressReporter(progressReporter);
         extractor.extractRecursively();
 
@@ -74,7 +73,7 @@ public class Program {
         pdfBuilder.setProgressReporter(progressReporter);
         pdfBuilder.createPdfFromImages(
                 pages,
-                PathUtils.replaceExtension(PathUtils.getFileName(commandLine.getArchive()), ""),
+                PathUtils.replaceExtension(PathUtils.getFileName(commandLine.getOutputPdf()), ""),
                 commandLine.getOutputPdf());
 
         // cleanup
@@ -132,9 +131,11 @@ public class Program {
 
     private static void checkCommandLine(CommandLineOptions commandLine) {
         // archive must exists
-        if (!PathUtils.fileExists(commandLine.getArchive())) {
-            System.err.printf("File '%s' doesn't exists.%n", commandLine.getArchive());
-            System.exit(2);
+        for (String archive : commandLine.getArchives()) {
+            if (!PathUtils.fileExists(archive)) {
+                System.err.printf("File '%s' doesn't exists.%n", archive);
+                System.exit(2);
+            }
         }
 
         // output pdf must not exists

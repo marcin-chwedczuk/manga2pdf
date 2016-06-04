@@ -4,31 +4,48 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MangaArchiveExtractor extends ProgressReportingComponent {
     private static Logger logger = LogManager.getLogger(MangaArchiveExtractor.class);
 
-    private final String archiveFilename;
+    private final List<String> archiveFilenames;
     private final String outputDirectory;
 
-    public MangaArchiveExtractor(String archiveFilename, String outputDirectory) {
-        if (StringUtils.isNullOrEmpty(archiveFilename))
-            throw new IllegalArgumentException("archiveFilename cannot be empty.");
+    public MangaArchiveExtractor(List<String> archiveFilenames, String outputDirectory) {
+        if (archiveFilenames == null)
+            throw new NullPointerException("archiveFilenames");
+
+        if (archiveFilenames.isEmpty())
+            throw new IllegalArgumentException("archiveFileNames must contain at least one filename.");
 
         if (StringUtils.isNullOrEmpty(outputDirectory))
             throw new IllegalArgumentException("outputDirectory cannot be empty");
 
-        this.archiveFilename = archiveFilename;
+        this.archiveFilenames = new ArrayList<>(archiveFilenames);
         this.outputDirectory = outputDirectory;
     }
 
     public void extractRecursively() {
-        String normalizedArchiveFilename = PathUtils.normalizePath(archiveFilename);
-        String normalizedOutputDirectory = PathUtils.normalizePath(outputDirectory);
+        // process files in manga order - so arg_x subdirectories are in sync
+        // with order of chapters
+        Collections.sort(archiveFilenames);
 
-        extractRecursively(normalizedArchiveFilename, normalizedOutputDirectory, false);
+        int index = 0;
+        for (String archiveFilename : archiveFilenames) {
+            logger.debug("-- PROCESSING FILE: {} --", archiveFilename);
+
+            String normalizedArchiveFilename = PathUtils.normalizePath(archiveFilename);
+
+            Path outputPath = Paths.get(outputDirectory, "arg_"+index);
+            String normalizedOutputPath = PathUtils.normalizePath(outputPath.toString());
+
+            extractRecursively(normalizedArchiveFilename, normalizedOutputPath, false);
+            index++;
+        }
     }
 
     private void extractRecursively(
