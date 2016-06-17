@@ -3,6 +3,7 @@ package mc.manga2pdf;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,6 +43,9 @@ public class MangaArchiveExtractor extends ProgressReportingComponent {
 
             Path outputPath = Paths.get(outputDirectory, "arg_"+index);
             String normalizedOutputPath = PathUtils.normalizePath(outputPath.toString());
+
+            if (!new File(normalizedOutputPath).mkdirs())
+                throw new RuntimeException("cannot create directory: " + normalizedArchiveFilename);
 
             extractRecursively(normalizedArchiveFilename, normalizedOutputPath, false);
             index++;
